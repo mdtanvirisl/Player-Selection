@@ -1,4 +1,25 @@
 
+//selection of players
+const buttons = document.querySelectorAll(".btn-select");
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+        //get player name
+        const nameField = document.querySelectorAll('.name');
+        //create new li element
+        const li = document.createElement('li');
+        li.innerText = nameField[i].innerText;
+        //add new created li element to ul list
+        const seletedPlayers = document.getElementById('selected-player');
+        seletedPlayers.appendChild(li);
+    });
+}
+
+
+function getElement(inputId) {
+    const inputField = document.getElementById(inputId);
+    return inputField;
+}
 
 document.getElementById('btn-calculate').addEventListener('click', function () {
     const playerField = getElement('player-field');
