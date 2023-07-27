@@ -8,10 +8,20 @@ for (let i = 0; i < buttons.length; i++) {
         const nameField = document.querySelectorAll('.name');
         //create new li element
         const li = document.createElement('li');
+        li.classList.add('li-list');
         li.innerText = nameField[i].innerText;
-        //add new created li element to ul list
-        const seletedPlayers = document.getElementById('selected-player');
-        seletedPlayers.appendChild(li);
+        //check previous check list
+        const liList = document.querySelectorAll('.li-list');
+        const liLength = liList.length;
+        if (liLength < 5) {
+            //add new created li element to ul list
+            const seletedPlayers = document.getElementById('selected-player');
+            seletedPlayers.appendChild(li);
+        }
+        else {
+            alert("you already selected best 5 players");
+        }
+
     });
 }
 
@@ -26,7 +36,11 @@ document.getElementById('btn-calculate').addEventListener('click', function () {
     const playerFieldValue = parseFloat(playerField.value);
 
     playerField.value = "";
-    const totalPlayerCost = playerFieldValue * 5;
+
+    const liList = document.querySelectorAll('.li-list');
+    const liLength = liList.length;
+
+    const totalPlayerCost = playerFieldValue * liLength;
 
     const playerExpenses = getElement('player-expenses');
     playerExpenses.innerHTML = totalPlayerCost;
